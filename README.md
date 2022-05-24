@@ -8,17 +8,29 @@ We called Github api with the given token and get which permissions scope the to
 click [here](https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps) read GitHub documentation.
 
 
-## Example
+## Usage
+Add this to Cargo.toml:
+```toml
+[dependencies]
+github-scopes-rs = { version = "1.0.0" }
+```
+
+Here's a simple example
 ```rs
 fn main() -> AnyResult<()> {
-    let permissions = match OAuthContext::new("some-token".to_string()) {
+    let permissions = match OAuthContext::new("token") {
         Ok(s) => s.get_scope_permissions(),
         Err(e) => return Err(e),
     };
 
     if !permissions.repo.all {
-        return Err(anyhow!("token has not full repo access"));
+        return Err(anyhow!("`repo` permission is mandatory"));
     }
     Ok(())
 }
+```
+
+You can run it by cloning this repo, and then:
+```sh
+GITHUB_TOKEN=<TOKEN> cargo run --example base
 ```
