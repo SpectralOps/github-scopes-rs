@@ -4,7 +4,11 @@ version = "1.0.0"
 authors = ["Elad Kaplan <kaplan.elad@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0"
-description = ""
+description = "Discover GitHub token scope permission and return you an easy interface for checking token permission before querying GitHub"
+homepage = "https://github.com/SpectralOps/github-scopes-rs"
+repository = "https://github.com/SpectralOps/github-scopes-rs"
+readme = "README.md"
+keywords = ["github", "github-api", "permissions", "oauth-app"]
 
 [lib]
 name = "github_scopes_rs"
