@@ -7,6 +7,7 @@ license = "Apache-2.0"
 description = "Discover GitHub token scope permission and return you an easy interface for checking token permission before querying GitHub"
 homepage = "https://github.com/SpectralOps/github-scopes-rs"
 repository = "https://github.com/SpectralOps/github-scopes-rs"
+documentation = "https://docs.rs/github-scopes-rs"
 readme = "README.md"
 keywords = ["github", "github-api", "permissions", "oauth-app"]
 
