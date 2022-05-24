@@ -12,8 +12,7 @@ fn main() -> AnyResult<()> {
             exit(1)
         }
     };
-
-    let permissions = match OAuthContext::new(token.as_ref()) {
+    let permissions = match OAuthContext::with_domain(token.as_ref(), "https://example.com") {
         Ok(s) => s.get_scope_permissions(),
         Err(e) => return Err(e),
     };
