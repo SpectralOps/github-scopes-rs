@@ -12,7 +12,7 @@
 //! use github_scopes_rs::oauth::OAuthContext;
 //!
 //! # fn run()  {
-//! let permissions = OAuthContext::new("token".to_string()).unwrap().get_scope_permissions();
+//! let permissions = OAuthContext::new("token").unwrap().get_scope_permissions();
 //!
 //! if !permissions.repo.all {
 //!     // do something
@@ -40,7 +40,7 @@ mod tests {
             .expect_at_most(1)
             .create();
 
-        let scope = OAuthContext::new("dummy-token".to_string());
+        let scope = OAuthContext::with_domain("dummy-token", mockito::server_url().as_ref());
         m.assert();
         assert!(scope.is_ok());
 
@@ -66,7 +66,8 @@ mod tests {
             .expect_at_most(1)
             .create();
 
-        let mut scope = OAuthContext::new("dummy-token".to_string()).unwrap();
+        let mut scope =
+            OAuthContext::with_domain("dummy-token", mockito::server_url().as_ref()).unwrap();
         mock_first_request.assert();
 
         let permissions = scope.get_scope_permissions();
@@ -90,7 +91,7 @@ mod tests {
             .expect_at_most(1)
             .create();
 
-        let scope = OAuthContext::new("dummy-token".to_string());
+        let scope = OAuthContext::with_domain("dummy-token", mockito::server_url().as_ref());
         m.assert();
         assert!(scope.is_err());
     }
@@ -104,7 +105,7 @@ mod tests {
             .expect_at_most(1)
             .create();
 
-        let scope = OAuthContext::new("dummy-token".to_string());
+        let scope = OAuthContext::with_domain("dummy-token", mockito::server_url().as_ref());
         m.assert();
         assert!(scope.is_err());
     }

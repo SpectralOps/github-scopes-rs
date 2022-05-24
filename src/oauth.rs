@@ -1,10 +1,6 @@
 //! Scopes for OAuth Apps, more details [here](https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps)
 //!
 //!
-
-#[cfg(test)]
-use mockito;
-
 use super::transform::{
     GithubScopeAdminLevel, GithubScopeEnterprise, GithubScopeLevel, GithubScopeRepo,
     GithubScopeUser, GithubTokenScope,
@@ -32,22 +28,25 @@ pub struct OAuthContext {
 
 impl OAuthContext {
     /// Create a `OAuthContext`
-    pub fn new(token: String) -> AnyResult<Self> {
+    pub fn new(token: &str) -> AnyResult<Self> {
+        OAuthContext::create(token, "https://api.github.com")
+    }
+
+    /// Create a `OAuthContext` with token and domain
+    pub fn with_domain(token: &str, domain: &str) -> AnyResult<Self> {
+        OAuthContext::create(token, domain)
+    }
+
+    fn create(token: &str, domain: &str) -> AnyResult<Self> {
         let client = Client::builder()
             .user_agent(env!("CARGO_PKG_NAME"))
             .timeout(MAX_REQUEST_TIME)
             .build()
             .unwrap();
 
-        #[cfg(not(test))]
-        let domain = "https://api.github.com";
-
-        #[cfg(test)]
-        let domain = &mockito::server_url();
-
         let mut scope = OAuthContext {
             client,
-            token,
+            token: token.to_string(),
             domain: domain.to_string(),
             scope: Vec::new(),
         };
