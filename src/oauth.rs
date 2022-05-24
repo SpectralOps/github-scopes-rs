@@ -18,6 +18,9 @@ const MAX_REQUEST_TIME: Duration = Duration::from_secs(1);
 /// lists the scopes your token has authorized.
 const HEADER_SCOPE_KEY: &str = "x-oauth-scopes";
 
+/// base github api domain
+const GITHUB_API_DOMAIN: &str = "https://api.github.com";
+
 /// Scope context
 pub struct OAuthContext {
     client: reqwest::blocking::Client,
@@ -29,7 +32,7 @@ pub struct OAuthContext {
 impl OAuthContext {
     /// Create a `OAuthContext`
     pub fn new(token: &str) -> AnyResult<Self> {
-        OAuthContext::create(token, "https://api.github.com")
+        OAuthContext::create(token, GITHUB_API_DOMAIN)
     }
 
     /// Create a `OAuthContext` with token and domain
