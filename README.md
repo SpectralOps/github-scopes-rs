@@ -1,5 +1,7 @@
 # github-scopes-rs
 
+[![Tests](https://github.com/SpectralOps/github-scopes-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/SpectralOps/github-scopes-rs/actions/workflows/ci.yml)
+
 Discover GitHub token scope permission and return you an easy interface for checking token permission before querying GitHub.
 In many cases, you try to do actions to GitHub, but you get unclear permissions errors. This project allows you to get which permission your token has before, called GitHub, and if you don’t have the right permissions, you can tell the user the exact permission the user needs.
 
