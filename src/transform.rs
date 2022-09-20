@@ -1,6 +1,7 @@
 //! Transform GitHub permission to structs
 
 /// All token scope data
+#[derive(Debug)]
 pub struct GithubTokenScope {
     pub repo: GithubScopeRepo,
     pub workflow: bool,
@@ -17,9 +18,11 @@ pub struct GithubTokenScope {
     pub discussion: GithubScopeLevel,
     pub enterprise: GithubScopeEnterprise,
     pub gpg_key: GithubScopeAdminLevel,
+    pub ssh_signing_key: GithubScopeAdminLevel,
 }
 
 /// GitHub scope repo
+#[derive(Debug)]
 pub struct GithubScopeRepo {
     pub all: bool,
     pub status: bool,
@@ -30,6 +33,7 @@ pub struct GithubScopeRepo {
 }
 
 /// GitHub admin scope with admin, write and read access
+#[derive(Debug)]
 pub struct GithubScopeAdminLevel {
     pub admin: bool,
     pub write: bool,
@@ -37,12 +41,14 @@ pub struct GithubScopeAdminLevel {
 }
 
 /// GitHub scope level with write and read access
+#[derive(Debug)]
 pub struct GithubScopeLevel {
     pub write: bool,
     pub read: bool,
 }
 
 /// Github user scope
+#[derive(Debug)]
 pub struct GithubScopeUser {
     pub all: bool,
     pub email: bool,
@@ -51,6 +57,7 @@ pub struct GithubScopeUser {
 }
 
 /// GitHub enterprise scope
+#[derive(Debug)]
 pub struct GithubScopeEnterprise {
     pub all: bool,
     pub manage_runners: bool,

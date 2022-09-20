@@ -138,10 +138,10 @@ impl OAuthContext {
                     || self.scope.contains(&"read:org".to_owned()),
             },
             public_key: GithubScopeAdminLevel {
-                admin: self.scope.contains(&"admin:public_key:org".to_owned()),
-                write: self.scope.contains(&"admin:public_key:org".to_owned())
+                admin: self.scope.contains(&"admin:public_key".to_owned()),
+                write: self.scope.contains(&"admin:public_key".to_owned())
                     || self.scope.contains(&"write:public_key".to_owned()),
-                read: self.scope.contains(&"admin:public_key:org".to_owned())
+                read: self.scope.contains(&"admin:public_key".to_owned())
                     || self.scope.contains(&"write:public_key".to_owned())
                     || self.scope.contains(&"read:public_key".to_owned()),
             },
@@ -189,6 +189,14 @@ impl OAuthContext {
                 read: self.scope.contains(&"admin:gpg_key".to_owned())
                     || self.scope.contains(&"write:gpg_key".to_owned())
                     || self.scope.contains(&"read:gpg_key".to_owned()),
+            },
+            ssh_signing_key: GithubScopeAdminLevel {
+                admin: self.scope.contains(&"admin:ssh_signing_key".to_owned()),
+                write: self.scope.contains(&"admin:ssh_signing_key".to_owned())
+                    || self.scope.contains(&"write:ssh_signing_key".to_owned()),
+                read: self.scope.contains(&"admin:ssh_signing_key".to_owned())
+                    || self.scope.contains(&"write:ssh_signing_key".to_owned())
+                    || self.scope.contains(&"read:ssh_signing_key".to_owned()),
             },
         }
     }
